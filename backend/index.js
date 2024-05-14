@@ -16,7 +16,7 @@ const PORT = 8000;
 // Use the cors middleware to allow all CORS requests
 app.use(cors(
   {
-    origin: ["https://deploy-quality-log-control-api.app"],
+    origin: ["https://deploy-quality-log-control-frontend.vercel.app/"],
     methods: ["GET", "POST"],
     credentials: true
   }
