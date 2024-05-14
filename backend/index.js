@@ -17,8 +17,7 @@ const PORT = 8000;
 app.use(cors(
   {
     origin: ["https://deploy-quality-log-control-frontend.vercel.app"],
-    methods: ["GET", "POST"],
-    credentials: true
+    methods: ["GET"]
   }
 ));
 
