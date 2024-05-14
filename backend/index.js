@@ -14,14 +14,13 @@ if (!fs.existsSync(logDir)) {
 }
 
 // Use the cors middleware to allow all CORS requests
-app.use(cors());
-// app.use(cors(
-//   {
-//     origin: ["https://deploy-quality-log-control-api.app"],
-//     methods: ["GET"],
-//     credentials: true
-//   }
-// ));
+app.use(cors(
+  {
+    origin: ["https://deploy-quality-log-control-api.app"],
+    methods: ["GET", "POST"],
+    credentials: true
+  }
+));
 
 app.get("/", (req, res) => {
   res.send("Hello! Server is Up")
