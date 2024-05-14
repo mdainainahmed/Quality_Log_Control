@@ -1,17 +1,17 @@
 const express = require("express");
-const fs = require("fs");
-const path = require("path");
-const readline = require("readline");
+// const fs = require("fs");
+// const path = require("path");
+// const readline = require("readline");
 const cors = require("cors"); // Import the cors middleware
 
 const app = express();
 const PORT = 8000;
 
-// Log directory
-const logDir = path.join(__dirname, "logs");
-if (!fs.existsSync(logDir)) {
-  fs.mkdirSync(logDir);
-}
+// // Log directory
+// const logDir = path.join(__dirname, "logs");
+// if (!fs.existsSync(logDir)) {
+//   fs.mkdirSync(logDir);
+// }
 
 // Use the cors middleware to allow all CORS requests
 app.use(cors(
@@ -36,8 +36,8 @@ app.use((req, res, next) => {
       source: "request.log",
     },
   };
-  const logFilePath = path.join(logDir, "request.log");
-  fs.appendFileSync(logFilePath, JSON.stringify(logData) + "\n");
+  // const logFilePath = path.join(logDir, "request.log");
+  // fs.appendFileSync(logFilePath, JSON.stringify(logData) + "\n");
   next();
 });
 
@@ -97,8 +97,8 @@ function logAPICall(apiName, message, level = "info") {
       source: `${apiName}.log`,
     },
   };
-  const logFilePath = path.join(logDir, `${apiName}.log`);
-  fs.appendFileSync(logFilePath, JSON.stringify(logData) + "\n");
+  // const logFilePath = path.join(logDir, `${apiName}.log`);
+  // fs.appendFileSync(logFilePath, JSON.stringify(logData) + "\n");
   // sending log data
   return JSON.stringify(logData);
 }
@@ -116,21 +116,21 @@ function getRandomLogLevel() {
 }
 
 // Query logs route
-app.get("/logs", (req, res) => {
-  const logs = [];
-  const logFiles = fs.readdirSync(logDir);
-  for (const logFile of logFiles) {
-    const fileStream = fs.createReadStream(path.join(logDir, logFile));
-    const rl = readline.createInterface({
-      input: fileStream,
-      crlfDelay: Infinity,
-    });
-    rl.on("line", (line) => {
-      logs.push(JSON.parse(line));
-    });
-  }
-  res.json(logs);
-});
+// app.get("/logs", (req, res) => {
+//   const logs = [];
+//   const logFiles = fs.readdirSync(logDir);
+//   for (const logFile of logFiles) {
+//     const fileStream = fs.createReadStream(path.join(logDir, logFile));
+//     const rl = readline.createInterface({
+//       input: fileStream,
+//       crlfDelay: Infinity,
+//     });
+//     rl.on("line", (line) => {
+//       logs.push(JSON.parse(line));
+//     });
+//   }
+//   res.json(logs);
+// });
 
 // Start server
 app.listen(PORT, () => {
