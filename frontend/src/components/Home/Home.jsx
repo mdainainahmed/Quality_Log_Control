@@ -22,7 +22,7 @@ const Home = () => {
     console.log(currentApi);
 
     async function fetchApi() {
-      await fetch(`http://localhost:8000/${currentApi}`)
+      await fetch(`https://deploy-quality-log-control-api.vercel.app/${currentApi}`)
         .then((res) => res.text())
         .then((data) => setData(data))
     }
