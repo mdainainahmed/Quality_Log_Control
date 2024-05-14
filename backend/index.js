@@ -14,7 +14,13 @@ if (!fs.existsSync(logDir)) {
 }
 
 // Use the cors middleware to allow all CORS requests
-app.use(cors());
+app.use(cors(
+  {
+    origin: ["https://quality-log-control.vercel.app"],
+    methods: ["GET"],
+    credentials: true
+  }
+));
 
 app.get("/", (req, res) => {
   res.send("Hello! Server is Up")
